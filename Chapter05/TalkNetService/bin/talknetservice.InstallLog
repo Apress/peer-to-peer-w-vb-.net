@@ -1,0 +1,375 @@
+﻿Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe assembly.
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe assembly.
+Remove InstallState file because there are no installers.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe assembly.
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe assembly.
+Remove InstallState file because there are no installers.
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe assembly.
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Warning: The source Talk .NET Service is not registered on the local machine.
+Service Talk .NET Service is being removed from the system...
+An exception occurred during the uninstallation of the System.ServiceProcess.ServiceInstaller installer.
+System.ComponentModel.Win32Exception: The specified service does not exist as an installed service
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Rolling back assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Creating EventLog source Talk .NET Service in log Application...
+Rolling back assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Restoring event log to previous state for source Talk .NET Service.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Attempt to stop service Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Creating EventLog source Talk .NET Service in log Application...
+Rolling back assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Restoring event log to previous state for source Talk .NET Service.
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.
+Installing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Installing service Talk .NET Service...
+Service Talk .NET Service has been successfully installed.
+Creating EventLog source Talk .NET Service in log Application...
+Committing assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Uninstalling assembly 'c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe'.
+Affected parameters are:
+   assemblypath = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.exe
+   logfile = c:\code\p2p\chapter05\talknetservice\bin\talknetservice.InstallLog
+Removing EventLog source Talk .NET Service.
+Attempt to stop service Talk .NET Service.
+Service Talk .NET Service is being removed from the system...
+Service Talk .NET Service was successfully removed from the system.

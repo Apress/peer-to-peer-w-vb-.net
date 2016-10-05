@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="www.prosetech.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="www.prosetech.com" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="www.prosetech.com">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Register">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="peer" type="s0:Peer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Peer">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Guid" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Port" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RegisterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegisterResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefreshRegistration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="peer" type="s0:Peer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefreshRegistrationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RefreshRegistrationResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Unregister">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="peer" type="s0:Peer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnregisterResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PublishFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="files" type="s0:ArrayOfSharedFile" />
+            <s:element minOccurs="0" maxOccurs="1" name="peer" type="s0:Peer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSharedFile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SharedFile" nillable="true" type="s0:SharedFile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SharedFile">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Guid" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileCreated" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Peer" type="s0:Peer" />
+          <s:element minOccurs="0" maxOccurs="1" name="Keywords" type="s0:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PublishFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PublishFilesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="keywords" type="s0:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchForFileResult" type="s0:ArrayOfSharedFile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </types>
+  <message name="RegisterSoapIn">
+    <part name="parameters" element="s0:Register" />
+  </message>
+  <message name="RegisterSoapOut">
+    <part name="parameters" element="s0:RegisterResponse" />
+  </message>
+  <message name="RefreshRegistrationSoapIn">
+    <part name="parameters" element="s0:RefreshRegistration" />
+  </message>
+  <message name="RefreshRegistrationSoapOut">
+    <part name="parameters" element="s0:RefreshRegistrationResponse" />
+  </message>
+  <message name="UnregisterSoapIn">
+    <part name="parameters" element="s0:Unregister" />
+  </message>
+  <message name="UnregisterSoapOut">
+    <part name="parameters" element="s0:UnregisterResponse" />
+  </message>
+  <message name="PublishFilesSoapIn">
+    <part name="parameters" element="s0:PublishFiles" />
+  </message>
+  <message name="PublishFilesSoapOut">
+    <part name="parameters" element="s0:PublishFilesResponse" />
+  </message>
+  <message name="SearchForFileSoapIn">
+    <part name="parameters" element="s0:SearchForFile" />
+  </message>
+  <message name="SearchForFileSoapOut">
+    <part name="parameters" element="s0:SearchForFileResponse" />
+  </message>
+  <portType name="DiscoveryServiceSoap">
+    <operation name="Register">
+      <input message="s0:RegisterSoapIn" />
+      <output message="s0:RegisterSoapOut" />
+    </operation>
+    <operation name="RefreshRegistration">
+      <input message="s0:RefreshRegistrationSoapIn" />
+      <output message="s0:RefreshRegistrationSoapOut" />
+    </operation>
+    <operation name="Unregister">
+      <input message="s0:UnregisterSoapIn" />
+      <output message="s0:UnregisterSoapOut" />
+    </operation>
+    <operation name="PublishFiles">
+      <input message="s0:PublishFilesSoapIn" />
+      <output message="s0:PublishFilesSoapOut" />
+    </operation>
+    <operation name="SearchForFile">
+      <input message="s0:SearchForFileSoapIn" />
+      <output message="s0:SearchForFileSoapOut" />
+    </operation>
+  </portType>
+  <binding name="DiscoveryServiceSoap" type="s0:DiscoveryServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="Register">
+      <soap:operation soapAction="www.prosetech.com/Register" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RefreshRegistration">
+      <soap:operation soapAction="www.prosetech.com/RefreshRegistration" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Unregister">
+      <soap:operation soapAction="www.prosetech.com/Unregister" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PublishFiles">
+      <soap:operation soapAction="www.prosetech.com/PublishFiles" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SearchForFile">
+      <soap:operation soapAction="www.prosetech.com/SearchForFile" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="DiscoveryService">
+    <port name="DiscoveryServiceSoap" binding="s0:DiscoveryServiceSoap">
+      <soap:address location="http://localhost/Discovery/DiscoveryService.asmx" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,45 @@
+"General"
+{
+"ProjectIdGuid" = "{13FBDE13-D6AA-4BE8-A70B-3CA22216A0F6}"
+"NestedProjectID" = "{981D5294-9B58-407E-833F-2870141A255D}"
+"ShowAllFiles" = "T"
+"GrooveUserControl" = "GrooveUserControl.vb"
+}
+"Configurations"
+{
+    "Debug|Win32"
+    {
+    "BuildOutputs" = "C:\\Program Files\\Groove Networks\\Groove\\Data\\localhost\\PartyPlanner"
+    "ToolName" = "PartyPlanner"
+    "Description" = "Lists Items For a Party"
+    "Author" = "ProseTech"
+    "OrganizationURL" = "www.prosetech.com"
+    "Version" = "0.0.0.29"
+    "AutoIncrement" = "-1"
+    "Fingerprint" = ""
+    }
+    "Release|Win32"
+    {
+    "BuildOutputs" = "C:\\Program Files\\Groove Networks\\Groove\\Data\\localhost\\GrooveTool"
+    "ToolName" = "GrooveTool"
+    "Description" = "GrooveTool for .NET"
+    "Author" = "Your Name"
+    "OrganizationURL" = "yourcompany.com"
+    "Version" = "0.0.0.0"
+    "AutoIncrement" = "-1"
+    "Fingerprint" = ""
+    }
+}
+"Files"
+{
+    "GrooveUserControl\\GrooveUserControl.vbproj"
+    {
+    "ProjRelPath" = "T"
+    }
+}
+"ProjStartupServices"
+{
+}
+"Globals"
+{
+}

@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{B3DADF10-73D5-4249-B330-229939E5EA6D}") = "GrooveTool", "GrooveTool.gvbproj", "{13FBDE13-D6AA-4BE8-A70B-3CA22216A0F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{13FBDE13-D6AA-4BE8-A70B-3CA22216A0F6}.Debug.ActiveCfg = Debug|Win32
+		{13FBDE13-D6AA-4BE8-A70B-3CA22216A0F6}.Debug.Build.0 = Debug|Win32
+		{13FBDE13-D6AA-4BE8-A70B-3CA22216A0F6}.Release.ActiveCfg = Release|Win32
+		{13FBDE13-D6AA-4BE8-A70B-3CA22216A0F6}.Release.Build.0 = Release|Win32
+		{981D5294-9B58-407E-833F-2870141A255D}.Debug.ActiveCfg = Debug|.NET
+		{981D5294-9B58-407E-833F-2870141A255D}.Debug.Build.0 = Debug|.NET
+		{981D5294-9B58-407E-833F-2870141A255D}.Release.ActiveCfg = Release|.NET
+		{981D5294-9B58-407E-833F-2870141A255D}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

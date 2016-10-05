@@ -1,0 +1,146 @@
+<VisualStudioProject>
+    <VisualBasic
+        ProjectType = "Local"
+        ProductVersion = "7.0.9466"
+        SchemaVersion = "1.0"
+        ProjectGuid = "{BC86AA08-6A2C-4C0E-A1A4-3525F0FBA42D}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "TalkServer"
+                AssemblyOriginatorKeyFile = ""
+                AssemblyOriginatorKeyMode = "None"
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "WinExe"
+                OptionCompare = "Binary"
+                OptionExplicit = "On"
+                OptionStrict = "Off"
+                RootNamespace = "TalkServer"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DebugSymbols = "true"
+                    IncrementalBuild = "true"
+                    Optimize = "false"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "1"
+                />
+                <Config
+                    Name = "Release"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DefineDebug = "false"
+                    DefineTrace = "true"
+                    DebugSymbols = "false"
+                    IncrementalBuild = "false"
+                    Optimize = "true"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "1"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                />
+                <Reference
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                />
+                <Reference
+                    Name = "Intel.Peer.Messaging"
+                    AssemblyName = "Intel.Peer.Messaging"
+                    HintPath = "..\..\..\..\Program Files\Intel\P2P\v1.0\bin\Intel.Peer.Messaging.dll"
+                />
+                <Reference
+                    Name = "Intel.Peer.Messaging.Services"
+                    AssemblyName = "Intel.Peer.Messaging.Services"
+                    HintPath = "..\..\..\..\Program Files\Intel\P2P\v1.0\bin\Intel.Peer.Messaging.Services.dll"
+                />
+                <Reference
+                    Name = "Intel.Peer.Messaging.Utility"
+                    AssemblyName = "Intel.Peer.Messaging.Utility"
+                    HintPath = "..\..\..\..\Program Files\Intel\P2P\v1.0\bin\Intel.Peer.Messaging.Utility.dll"
+                />
+                <Reference
+                    Name = "Intel.Peer.Security.SchannelNativeWrapper"
+                    AssemblyName = "Intel.Peer.Security.SchannelNativeWrapper"
+                    HintPath = "..\..\..\..\Program Files\Intel\P2P\v1.0\bin\Intel.Peer.Security.SchannelNativeWrapper.dll"
+                />
+                <Reference
+                    Name = "TalkComponent"
+                    AssemblyName = "TalkComponent"
+                    HintPath = "..\TalkComponent\bin\TalkComponent.dll"
+                />
+                <Reference
+                    Name = "TraceComponent"
+                    AssemblyName = "TraceComponent"
+                    HintPath = "..\TraceComponent\bin\TraceComponent.dll"
+                />
+            </References>
+            <Imports>
+                <Import Namespace = "Microsoft.VisualBasic" />
+                <Import Namespace = "System" />
+                <Import Namespace = "System.Collections" />
+                <Import Namespace = "System.Data" />
+                <Import Namespace = "System.Drawing" />
+                <Import Namespace = "System.Diagnostics" />
+                <Import Namespace = "System.Windows.Forms" />
+            </Imports>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "App.config"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "AssemblyInfo.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ServerProcess.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Startup.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+            </Include>
+        </Files>
+    </VisualBasic>
+</VisualStudioProject>
+

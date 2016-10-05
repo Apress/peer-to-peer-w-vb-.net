@@ -1,0 +1,1143 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>msnp</name>
+    </assembly>
+    <members>
+        <member name="T:MSNP.CommandParsers.CommandParser">
+            <summary>
+            Summary description for CommandParser.
+            </summary>
+        </member>
+        <member name="T:MSNP.CommandParsers.ErrorCommandParser">
+            <summary>
+            Parses responses from the server that contain error codes.
+            </summary>
+        </member>
+        <member name="T:MSNP.CommandParsers.ICommandParser">
+            <summary>
+            Summary description for ICommandParser.
+            </summary>
+        </member>
+        <member name="M:MSNP.CommandParsers.ErrorCommandParser.#ctor">
+            <summary>
+            Main constructor
+            </summary>
+        </member>
+        <member name="T:MSNP.CommandParsers.IDCommandParser">
+            <summary>
+            Summary description for IDCommandParser.
+            </summary>
+        </member>
+        <member name="T:MSNP.CommandParsers.MSGCommandParser">
+            <summary>
+            Summary description for MSGCommandParser.
+            </summary>
+        </member>
+        <member name="T:MSNP.CommandParsers.NoIDCommandParser">
+            <summary>
+            Summary description for NoIDCommandParser.
+            </summary>
+        </member>
+        <member name="T:MSNP.ConnectionHandler">
+            <summary>
+            Provides a base for classes that deal with the various connections of MSNP.
+            </summary>
+            <remarks>
+            This class provides functionality such as socket handling, reading/writing, and basic
+            protocol menutia.  The implementer needs only implement the <see cref="M:MSNP.ConnectionHandler.ProcessConnection"/> method.
+            Responses and Requests can be retrieved and sent using <see cref="M:MSNP.ConnectionHandler.GetResponses"/> and <see cref="M:MSNP.ConnectionHandler.AddRequest(MSNP.Request)"/>
+            respectively.
+            </remarks>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.#ctor(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Creates a new connection handler and initializes internal data.
+            </summary>
+            <remarks>
+            Nothing actually happens yet. To begin processing the connection, call
+            the start method.
+            </remarks>
+            <param name="host">A String that represents the hosts' DNS name or IPv4 (32-bit) IP address in the format of x.y.z.a</param>
+            <param name="port">An integer representing the port (0-65534) on which to connect</param>
+            <param name="user">The user handle with which to authenticate to the MSN servers</param>
+            <param name="pass">The password for the user</param>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.Start">
+            <summary>
+            Starts this connection.
+            </summary>
+            <remarks>
+            The current implementation of ConnectionHandler is single-use.
+            You cannot stop/disconnect/signout and then restart a connection
+            handler. You must create a new handler and start it.
+            </remarks>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.ProcessConnection">
+            <summary>
+            Implementer entry point
+            </summary>
+            <remarks>
+            <para>There is where the derriving class implements all its functionality.
+            This method is called each thread cycle.</para>
+            <para>Received responses can get checked using the <see cref="M:MSNP.ConnectionHandler.GetResponses"/> method.
+            Any requests that need to be sent out can be queued using the <see cref="M:MSNP.ConnectionHandler.AddRequest(MSNP.Request)"/> method.
+            </para>
+            <para>It is important that ProcessConnection finish in a timely manner and not block
+            for long periods of time. Any lengthy processes should be spawned into sub-threads.</para>
+            <para>When the connection needs to be closed, call the <see cref="M:MSNP.ConnectionHandler.CloseConnection"/>
+            method to signal to the ConnectionHandler its time to close the connection and bail.</para>
+            </remarks>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.GetResponses">
+            <summary>
+            Retrieves any responses that have been received since the last cycle.
+            </summary>
+            <remarks>
+            This method is thread-safe.
+            </remarks>
+            <returns>An array of responses to be processed.</returns>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.AddRequest(MSNP.Request)">
+            <summary>
+            Adds a request to the outgoing request queue
+            </summary>
+            <remarks>
+            <para>This method is thread-safe and uses a syncrhonized Queue collection.</para>
+            <para>Requests will actually be sent after the <see cref="M:MSNP.ConnectionHandler.ProcessConnection"/>
+            method finishes each cycle.</para>
+            </remarks>
+            <param name="request">The request to send.</param>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.OnConnectionClosed">
+            <summary>
+            Called when the connection has been closed.
+            </summary>
+            <remarks>
+            This method is called after the socket has closed and
+            allows the implementer a chance to gracefully shut down
+            in the case of a forced disconnect or user-driven signout.
+            </remarks>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.Reconnect">
+            <summary>
+            Called when a connection to a new host is necessary.
+            </summary>
+            <remarks>
+            <para>This is used mainly by Notification Server connections when an
+            XFR command is issued.</para>
+            <para>First set the new Host and Port properties and then call this method.</para>
+            </remarks>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.CloseConnection">
+            <summary>
+            Called by the implementer to signal that a disconnect is requested.
+            </summary>
+            <remarks>
+            The disconnect will not actually occur until the <see cref="M:MSNP.ConnectionHandler.ProcessConnection"/> method
+            has finished. Generally, this method should be called and then the ProcessConnection
+            method ended.
+            </remarks>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.SetProtocol(System.String)">
+            <summary>
+            Convenience method used for sending the VER command
+            </summary>
+            <remarks>
+            <para>Since most MSN-related connections use this command, this saves implementers from having to rewrite this section of code.</para>
+            <para>Call this method and then use <see cref="M:MSNP.ConnectionHandler.LookForProtocolResponse(MSNP.Response[])"/> on the next cycle to determine if the proper response was received.</para>
+            </remarks>
+            <param name="Protocol">The supported protocol (usually MSNP2)</param>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.LookForProtocolResponse(MSNP.Response[])">
+            <summary>
+            Determines if a response to a VER command has been received.
+            </summary>
+            <param name="responses">Currently received responses. Use the <see cref="M:MSNP.ConnectionHandler.GetResponses"/> method to get these.</param>
+            <returns>The response, if found, or null if not found.</returns>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.LookForSpecificResponse(MSNP.Response[],System.String)">
+            <summary>
+            Determines if a specific response has been recieved.
+            </summary>
+            <param name="responses">The responses in which to look. Use the <see cref="M:MSNP.ConnectionHandler.GetResponses"/> method to get these.</param>
+            <param name="command">The command part of the response to look for.</param>
+            <returns>The response, if found, or null if not found.</returns>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.handleConnection">
+            <summary>
+            Main thread class.
+            </summary>
+            <remarks>
+            <para>This is the method passed to the ThreadStart for the thread.
+            It connects, runs the main thread loop and disconnects.</para>
+            <para>The main thread loop gathers any waiting responses/commands from the
+            server and then calls ProcessConnection() which allows the implementer to 
+            perform various tasks and process the responses and issue any new requests. After
+            ProcessConnection finishes, any waiting requests are dispatched at this time.</para>
+            </remarks>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.Connect">
+            <summary>
+            Establishes the actual socket connection to the specified host and port.
+            </summary>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.Close">
+            <summary>
+            Closes and terminates the socket connection.
+            </summary>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.SendRequests">
+            <summary>
+            Dequeues queued requests and sends them using <see cref="M:MSNP.ConnectionHandler.SendRequest(MSNP.Request)"/>.
+            </summary>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.SendRequest(MSNP.Request)">
+            <summary>
+            Sends a request over the opened socket.
+            </summary>
+            <param name="request">The request to send.</param>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.CheckResponses">
+            <summary>
+            Checks the socket for any awaiting messages
+            </summary>
+            <remarks>
+            <para>Initiates an asynchronous read from the socket which calls <see cref="M:MSNP.ConnectionHandler.FinishedRead(System.IAsyncResult)"/> when finished.</para>
+            </remarks>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.FinishedRead(System.IAsyncResult)">
+            <summary>
+            Asynchronous callback from the socket read operation.
+            </summary>
+            <remarks>
+            Takes the raw message from the server and parses it using the <see cref="T:MSNP.CommandParsers.CommandParser"/>.
+            </remarks>
+            <param name="ar">The async result from the read operation</param>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.GetTransactionID">
+            <summary>
+            Retrieves the next transaction ID
+            </summary>
+            <remarks>
+            This is a thread-safe atomic operation and garauntees unique transaction IDs across threads
+            </remarks>
+            <returns>The next transaction ID</returns>
+        </member>
+        <member name="M:MSNP.ConnectionHandler.GetErrorDescription(System.Int32)">
+            <summary>
+            Gets a description for an error number
+            </summary>
+            <param name="errorNum">The error to describe</param>
+            <returns>The description for the error</returns>
+        </member>
+        <member name="T:MSNP.Contact">
+            <summary>
+            Represents a contact in a contact list.
+            </summary>
+            <remarks>
+            This class is returned whenever a list of contacts is requested from the <see cref="T:MSNP.MSNPHelper"/>.
+            </remarks>
+        </member>
+        <member name="M:MSNP.Contact.#ctor(System.String)">
+            <summary>
+            Main constructor
+            </summary>
+            <param name="userName">The user handle (email address) for this user</param>
+        </member>
+        <member name="M:MSNP.Contact.#ctor(System.String,System.String)">
+            <summary>
+            Constructs a contact with a user handle and friendly name
+            </summary>
+            <param name="userName">The user handle (email address) for this user</param>
+            <param name="friendlyName">The friendly name of the user</param>
+        </member>
+        <member name="M:MSNP.Contact.ToString">
+            <summary>
+            Returns a string representation of the contact. Useful for debugging purposes only.
+            </summary>
+        </member>
+        <member name="P:MSNP.Contact.UserName">
+            <summary>Returns the username or handle of this contact.</summary>
+            <remarks>This is usually the email of the contact (johndoe@msn.com).</remarks>
+            <value>The user handle of the contact</value>
+        </member>
+        <member name="P:MSNP.Contact.FriendlyName">
+            <summary>The friendly name or display name of the contact</summary>
+            <remarks>This is more friendly name of the contact such as John Doe</remarks>
+            <value>The friendly name or display name of the contact</value>
+        </member>
+        <member name="P:MSNP.Contact.State">
+            <summary>The current state of the user</summary>
+            <remarks>This will either be NLN or FLN for online or offline</remarks>
+            <value>The current state of the user</value>
+        </member>
+        <member name="P:MSNP.Contact.Substate">
+            <summary>The substate of the user</summary>
+            <remarks><para>This only applies when <see cref="P:MSNP.Contact.State"/> is NLN (online) and will be empty when <see cref="P:MSNP.Contact.State"/> is FLN.</para>
+            <para>The following are the supported substates:
+            <list type="table">
+            	<listheader>
+            		<term>Value</term>
+            		<description>Meaning</description>
+            	</listheader>
+            	<item>
+            		<term>IDL</term>
+            		<description>Idle</description>
+            	</item>
+            	<item>
+            		<term>BRB</term>
+            		<description>Be Right Back</description>
+            	</item>
+            	<item>
+            		<term>AWY</term>
+            		<description>Away</description>
+            	</item>
+            	<item>
+            		<term>PHN</term>
+            		<description>On The Phone</description>
+            	</item>	
+            	<item>
+            		<term>LUN</term>
+            		<description>Out To Lunch</description>
+            	</item>
+            </list></para>
+            </remarks>
+            <value>The substate of the contact</value>
+        </member>
+        <member name="T:MSNP.DispatchConnectionHandler">
+            <summary>
+            Handles a connection to the Dispatch Server
+            </summary>
+        </member>
+        <member name="M:MSNP.DispatchConnectionHandler.#ctor(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Configures this connection, but does not actually connect.
+            </summary>
+            <param name="host">The DNS name or IP address of the DS to connect to.</param>
+            <param name="port">The port of the DS server</param>
+            <param name="user">The username with which to authenticate</param>
+            <param name="pass">The user's password</param>
+        </member>
+        <member name="M:MSNP.DispatchConnectionHandler.OnXFREvent">
+            <summary>
+            Called to signal an XFREvent event.
+            </summary>
+        </member>
+        <member name="M:MSNP.DispatchConnectionHandler.ProcessConnection">
+            <summary>
+            Implementation of the abstract <see cref="M:MSNP.ConnectionHandler.ProcessConnection"/> method.
+            </summary>
+            <remarks>
+            <para>This is the main processing method for this class. This method is called
+            every cycle in the connection thread.</para>
+            <para>This thread will process the initial protocol initialization dialogue and then
+            receive the XFR for the NS.</para>
+            </remarks>
+        </member>
+        <member name="P:MSNP.DispatchConnectionHandler.XFRHost">
+            <summary>
+            The NS server hostname or IP to conect to.
+            </summary>
+            <remarks>
+            Used after the DS connection is complete and an NS XFR has been received.
+            </remarks>
+        </member>
+        <member name="P:MSNP.DispatchConnectionHandler.XFRPort">
+            <summary>
+            The NS server port number to connect to.
+            </summary>
+            <remarks>
+            Used after the DS connection is complete and an NS XFR has been received.
+            </remarks>
+        </member>
+        <member name="E:MSNP.DispatchConnectionHandler.XFREvent">
+            <summary>
+            Thrown when an NS XFR message has been received from the DS.
+            </summary>
+        </member>
+        <member name="T:MSNP.DispatchConnectionHandler.ConnectionState">
+            <summary>
+            Determines which state the ProcessConnection method is currently in during this cycle
+            </summary> 
+        </member>
+        <member name="T:MSNP.ISessionHandler">
+            <summary>
+            Interface for defining a class that will handle sessions when they are created or requested.
+            </summary>
+            <remarks>
+            <para>This interface is used to define the class that will be passed in to the <see cref="T:MSNP.MSNPHelper"/> and will be
+            used whenever a session is created (either the user is called or is calling).</para>
+            <para>The implementing class should be created and passed in to the <see cref="T:MSNP.MSNPHelper"/>. It is expected that this
+            class will be called multiple times by multiple threads. Each method should be completely thread-safe as they will
+            get called frequently by whatever sessions are open at the time.</para>
+            <para>Each time a function is called, the <see cref="T:MSNP.Session"/> is passed in to give the function context.
+            The <see cref="T:MSNP.Session"/> object contains a <see cref="P:MSNP.Session.SessionIdentifier"/> that can be used to distingush one session from another.
+            It is up to the implementer to ensure that these session identifiers are unique or useful to the app.</para>
+            <para>When a session is started by calling <see cref="M:MSNP.MSNPHelper.RequestSession(System.String,System.Object)"/> a session identifier can be
+            passed in to identify the session when it is created. Sessions that are created because another user called in
+            will have a null session identifier. The implementer can then set an identifier on the session at that time.</para>
+            <para>Sessions are not exclusive between two users. At any time, this user or the other user could add another user
+            to the session forming a party-line situation. The <see cref="M:MSNP.ISessionHandler.UserJoined(MSNP.Session,System.String,System.String)"/> method will alert you to the joining of another
+            user to the session.</para>
+            </remarks>
+        </member>
+        <member name="M:MSNP.ISessionHandler.SessionStarted(MSNP.Session)">
+            <summary>
+            Called when a session is starting.
+            </summary>
+            <remarks>
+            <para>If this session is starting because the user requested a session with a user (called another user),
+            then the session will have no users in it (as the CAL command has not yet been placed). Sending messages
+            at this time is pointless. Wait for the <see cref="M:MSNP.ISessionHandler.UserJoined(MSNP.Session,System.String,System.String)"/> method to be called before communicating.</para>
+            <para>If this session was the result of being called (as opposed to calling, or a request to start a new session),
+            the <see cref="P:MSNP.Session.SessionIdentifier"/> property on the <see cref="T:MSNP.Session"/> will be null. Otherwise,
+            it will be whatever was passed into the <see cref="M:MSNP.MSNPHelper.RequestSession(System.String,System.Object)"/> method.
+            </para>
+            </remarks>
+            <param name="session">The session which has been created.</param>
+        </member>
+        <member name="M:MSNP.ISessionHandler.MessageReceived(MSNP.Session,MSNP.MimeMessage)">
+            <summary>
+            Called when a message has been received by one of the other users in the session.
+            </summary>
+            <param name="session">The session on which the message arrived</param>
+            <param name="message">The message that was sent.</param>
+        </member>
+        <member name="M:MSNP.ISessionHandler.UserJoined(MSNP.Session,System.String,System.String)">
+            <summary>
+            Called when a user has joined the session.
+            </summary>
+            <remarks>
+            Multiple users can join a session if they are invited by one of the users already in the session.
+            </remarks>
+            <param name="session">The session to which the user has joined.</param>
+            <param name="userHandle">The handle of the user who joined. This is usually the email of the user (johndoe@msn.com)</param>
+            <param name="userFriendlyName">The friendly name of the user who joined (John Doe).</param>
+        </member>
+        <member name="M:MSNP.ISessionHandler.UserDeparted(MSNP.Session,System.String)">
+            <summary>
+            Called when a user has left the session.
+            </summary>
+            <remarks>
+            <para>This can be the only other user, or one of the users in a multi-user chat.</para>
+            <para>When the last user has left, the session will expire and end after the timeout perid (default 30 seconds)</para>
+            </remarks>
+            <param name="session">The session from which the user left</param>
+            <param name="userHandle">The handle (or email) of the user that left.</param>
+        </member>
+        <member name="M:MSNP.ISessionHandler.SessionEnded(MSNP.Session)">
+            <summary>
+            Called when a session is terminating.
+            </summary>
+            <remarks>
+            <para>
+            The session has ended and been disconnected. No messages or commands can be sent at this point.</para>
+            <para>This call is merely to allow the implementer to remove the session from any lists being kept.</para>
+            </remarks>
+            <param name="session">The session which has just ended</param>
+        </member>
+        <member name="M:MSNP.ISessionHandler.ErrorReceived(MSNP.Session,System.String)">
+            <summary>
+            Called when an error is returned from the server
+            </summary>
+            <param name="session">The session on which the error occured</param>
+            <param name="errorDescription">The description of the error</param>
+        </member>
+        <member name="T:MSNP.MimeMessage">
+            <summary>
+            A type representing a message sent from a user in a session.
+            </summary>
+            <remarks>
+            Various messages are sent by the MSN Messenger application. Many of them
+            are not text meant for the user, such as the Typing Message (which notifies other users
+            in the session that the specified user is currently typing a message). Be sure to check
+            the Content-Type and ensure that it is text/plain before displaying it to a user
+            or processing it as a user-typed message.
+            </remarks>
+        </member>
+        <member name="P:MSNP.MimeMessage.Body">
+            <summary>
+            The body or text of the message
+            </summary>
+            <remarks>
+            This mostly applies to user-typed messages and not system or management-related messages.
+            Ensure the Content-Type header is text/plain before treating it as a user-typed message.
+            </remarks>
+        </member>
+        <member name="P:MSNP.MimeMessage.Headers">
+            <summary>
+            A dictionary of headers included in the MIME header part of the message.
+            </summary>
+            <remarks>
+            Every message must have the MIME-Version and Content-Type headers. Other headers may be
+            included depending on the Content-Type of the message.
+            </remarks>
+        </member>
+        <member name="P:MSNP.MimeMessage.SenderHandle">
+            <summary>
+            The handle (email) of the user who sent the message.
+            </summary>
+        </member>
+        <member name="P:MSNP.MimeMessage.SenderFriendlyName">
+            <summary>
+            The friendly name (full name or display name) of the user who sent the message.
+            </summary>
+        </member>
+        <member name="T:MSNP.MSNPEventArgs">
+            <summary>
+            Event arguments type used for events generated by the <see cref="T:MSNP.MSNPHelper"/> type.
+            </summary>
+        </member>
+        <member name="P:MSNP.MSNPEventArgs.Data">
+            <summary>
+            The event-specific data for this event.
+            </summary>
+            <remarks>
+            Check the specific event documentation to determine what type of object this data might be
+            for that event.
+            </remarks>
+        </member>
+        <member name="T:MSNP.MSNPHelper">
+            <summary>
+            The main helper class which provides access to the underlying MSNP protocol API.
+            </summary>
+            <remarks>
+            This is the main public class that users of the API use to connect and work with
+            the MSNP protocol.
+            </remarks>
+        </member>
+        <member name="M:MSNP.MSNPHelper.#ctor(System.String,System.Int32,System.String,System.String,MSNP.ISessionHandler)">
+            <summary>
+            Main constructor for the helper
+            </summary>
+            <remarks>
+            No actual connections are made or actions performed in the constructor. Use <see cref="M:MSNP.MSNPHelper.Signin"/> to begin an MSNP connection.
+            </remarks>
+            <param name="host">The DNS name or IP address of the MSN Dispatch Server to which the initial connection should be made.</param>
+            <param name="port">The 32-bit TCP port on which to connect to the MSN Dispatch Server</param>
+            <param name="user">The user handle with which to authenticate to the MSN system.</param>
+            <param name="pass">The password for the user</param>
+            <param name="handler">An implemented <see cref="T:MSNP.ISessionHandler"/> for handing new sessions either incoming or outgoing.</param>
+        </member>
+        <member name="M:MSNP.MSNPHelper.#ctor(System.String,System.String,System.String,MSNP.ISessionHandler)">
+            <summary>
+            Convenience constructor which uses the default MSN port.
+            </summary>
+            <remarks>
+            No actual connections are made or actions performed in the constructor. Use <see cref="M:MSNP.MSNPHelper.Signin"/> to begin an MSNP connection.
+            </remarks>
+            <param name="host">The DNS name or IP address of the MSN Dispatch Server to which the initial connection should be made.</param>
+            <param name="user">The user handle with which to authenticate to the MSN system.</param>
+            <param name="pass">The password for the user</param>
+            <param name="handler">An implemented <see cref="T:MSNP.ISessionHandler"/> for handing new sessions either incoming or outgoing.</param>
+        </member>
+        <member name="M:MSNP.MSNPHelper.Signin">
+            <summary>
+            Signs into the MSN system.
+            </summary>
+            <remarks>
+            This is a synchronous method and will block while connecting.
+            </remarks>
+        </member>
+        <member name="M:MSNP.MSNPHelper.Signout">
+            <summary>
+            Signs out and ends the connection to the MSN system.
+            </summary>
+            <remarks>
+            This is a synchronous method which will block until the signout is complete.
+            </remarks>
+        </member>
+        <member name="M:MSNP.MSNPHelper.RequestSession(System.String,System.Object)">
+            <summary>
+            Establishes a new session with the specified user.
+            </summary>
+            <remarks>
+            <para>
+            This method is asynchronous and will submit the request and return immediately.
+            The <see cref="T:MSNP.ISessionHandler"/> will be notified when the session is successfully established.
+            The <paramref name="sessionIdentifier"/> will allow the caller to identify this session from others.
+            It is the caller's responsibility to ensure that the <paramref name="sessionIdentifier"/> is unique or useful.
+            The <paramref name="userHandle"/> specified to join the session may not join immediately. The session will be 
+            established and the call will be placed to the user. Due to Internet latency and other issues, it's possible
+            this user may take some time to join or may never join at all. It is the <see cref="T:MSNP.ISessionHandler"/> 's 
+            responsibility to ensure that these cases are dealt with properly.</para>
+            <para>
+            If the invited user does not connect within the specified timeout period (default 30 seconds), the session
+            will terminate automatically.</para>
+            <para>
+            This method is thread-safe.
+            </para>
+            </remarks>
+            <param name="userHandle">The handle (email address) of the user with which to establish the session.</param>
+            <param name="sessionIdentifier">An identifier which will be placed on the session</param>
+        </member>
+        <member name="M:MSNP.MSNPHelper.ChangeState(MSNP.MSNPHelper.ContactState,MSNP.MSNPHelper.ContactSubstate)">
+            <summary>
+            Changes the way this user appears to other users
+            </summary>
+            <param name="state">The state to set</param>
+            <param name="substate">The substate to set</param>
+        </member>
+        <member name="E:MSNP.MSNPHelper.ContactStateChangedEvent">
+            <summary>
+            Thrown when a contact in your contact list changes state (online/offline, etc).
+            </summary>
+            <remarks>
+            The <see cref="P:MSNP.MSNPEventArgs.Data"/> property for this event will be the <see cref="T:MSNP.Contact"/>
+            object representing the user whose state has changed.
+            </remarks>
+        </member>
+        <member name="P:MSNP.MSNPHelper.FLContacts">
+            <summary>
+            Returns a collection of contacts in the Forward List (main contact list)
+            </summary>
+            <remarks>
+            Note that this is a clone of the actual list. Modifications to the collection
+            or to the <see cref="T:MSNP.Contact"/> objects therein will not be reflected anywhere else.
+            </remarks>
+            <value>A collection of <see cref="T:MSNP.Contact"/> objects</value>
+        </member>
+        <member name="P:MSNP.MSNPHelper.SessionTimeout">
+            <summary>
+            The session timeout
+            </summary>
+            <remarks>This determines when a session will close itself after the last person has left.</remarks>
+            <value>The timeout in milliseconds</value>
+        </member>
+        <member name="T:MSNP.MSNPHelper.ContactState">
+            <summary>
+            Enumeration of main contact states.
+            </summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactState.Online">
+            <summary>Online, ready to receive messages </summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactState.Offline">
+            <summary>Offline, not receiving messages</summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactState.Hidden">
+            <summary>Hidden, online, but appear offline to everyone else</summary>
+        </member>
+        <member name="T:MSNP.MSNPHelper.ContactSubstate">
+            <summary>
+            Enumeration of contact substates (busy, idle, etc)
+            </summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactSubstate.Online">
+            <summary>Fully online, ready to receive messages</summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactSubstate.Busy">
+            <summary>Online, but busy, might not respond right away</summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactSubstate.Idle">
+            <summary>Online, but idle, doing something else</summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactSubstate.BeRightBack">
+            <summary>Online, but doing something else for a short period of time</summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactSubstate.AwayFromComputer">
+            <summary>Away from computer. I have a life</summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactSubstate.OnThePhone">
+            <summary>On the phone, someone must love me or want my money</summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactSubstate.OutToLunch">
+            <summary>Out to lunch, even super heroes have to eat</summary>
+        </member>
+        <member name="F:MSNP.MSNPHelper.ContactSubstate.None">
+            <summary>Offline, no substate necessary</summary>
+        </member>
+        <member name="T:MSNP.MSNPHelper.MSNPEventHandler">
+            <summary>
+            The main event delegate used for events thrown by the MSNPHelper.
+            </summary>
+        </member>
+        <member name="T:MSNP.NotificationConnectionHandler">
+            <summary>
+            Handles a Notification Server connection.
+            </summary>
+            <remarks>
+            <para>The Notification Server connection is the main conversation point for MSNP.
+            Requests for new sessions or contact list updates are made through here, and any
+            notifications received from other users or the MSN system itself are sent through here.</para>
+            </remarks>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.#ctor(System.String,System.Int32,System.String,System.String,MSNP.ISessionHandler)">
+            <summary>
+            Configures this connection
+            </summary>
+            <param name="host">The DNS name or IP address of the NS to connect to.</param>
+            <param name="port">The port of the NS server</param>
+            <param name="user">The username with which to authenticate</param>
+            <param name="pass">The user's password</param>
+            <param name="handler">The implemented session handler for any new sessions</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.ProcessConnection">
+            <summary>
+            Implementation of the abstract <see cref="M:MSNP.ConnectionHandler.ProcessConnection"/> method.
+            </summary>
+            <remarks>
+            <para>This is the main processing method for this class. This method is called
+            every cycle in the connection thread.</para>
+            <para>This thread will process the initial protocol initialization dialogue and then
+            enter the main notification phase and process any new notifications.</para>
+            </remarks>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.Stop">
+            <summary>
+            Signal this connection to stop and disconnect gracefully.
+            </summary>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.StartSBSession(System.String,System.Object)">
+            <summary>
+            Request a new switchboard connection for chat
+            </summary>
+            <param name="user">Initial user to invite</param>
+            <param name="sessionIdentifier">Implementer-specified identifier for the created session</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.ChangeState(System.String,System.String)">
+            <summary>
+            Changes how this client appears to other clients
+            </summary>
+            <param name="state">The state to set (currently NLN or FLN)</param>
+            <param name="substate">The substate (only valid for NLN)</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.HandleXFR(MSNP.Response)">
+            <summary>
+            Handle an XFR command from the server.
+            </summary>
+            <param name="response">The actual XFR response from the server.</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.ProcessAuthMD5(MSNP.Response[])">
+            <summary>
+            Handle the MD5 authentication dialog
+            </summary>
+            <param name="responses">Current received responses</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.ProcessResponses(MSNP.Response[])">
+            <summary>
+            Process current responses
+            </summary>
+            <remarks>
+            <para>This is the main guts of the NotificationConnectionHandler. Here is where
+            all the notifications from the server actually get processed. All notifications
+            pass through here and are handled such as contact status change (online/offline),
+            new session requests, property changes, etc.</para>
+            </remarks>
+            <param name="responses">Current received responses</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.setFLContactState(MSNP.Response)">
+            <summary>
+            Update or add a contact to the contact list with the specified state.
+            </summary>
+            <param name="response">The response containg the contact status change</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.OnOnlineEvent">
+            <summary>
+            Triggers an <see cref="F:MSNP.NotificationConnectionHandler.OnlineEvent"/>
+            </summary>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.OnSignedOutEvent">
+            <summary>
+            Triggers a <see cref="F:MSNP.NotificationConnectionHandler.SignedOutEvent"/>
+            </summary>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.OnContactStateChange(MSNP.Contact)">
+            <summary>
+            Triggers a <see cref="F:MSNP.NotificationConnectionHandler.ContactStateChangedEvent"/>
+            </summary>
+            <param name="user">The contact whose status has changed</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.GotSessionEnd(System.Object,System.EventArgs)">
+            <summary>
+            Called when a session has ended.
+            </summary>
+            <param name="sender">The <see cref="T:MSNP.SwitchboardConnectionHandler"/> who threw the event.</param>
+            <param name="args">Not used by this event</param>
+        </member>
+        <member name="M:MSNP.NotificationConnectionHandler.GotSessionIDObtained(System.Object,System.EventArgs)">
+            <summary>
+            Called when an outgoing session has its ID set
+            </summary>
+            <remarks>
+            When a new session is created for the purposes of calling out,
+            the session ID is not immediately returned from MSN. Instead,
+            the response to the first CAL command gives you the current
+            session's ID. This event is called when that happens.
+            </remarks>
+            <param name="sender">The <see cref="T:MSNP.SwitchboardConnectionHandler"/> which threw the event.</param>
+            <param name="args">Not used for this event.</param>
+        </member>
+        <member name="E:MSNP.NotificationConnectionHandler.ContactStateChangedEvent">
+            <summary>
+            Thrown when a contact has change its state (online to offline, or vice versa)
+            </summary>
+        </member>
+        <member name="E:MSNP.NotificationConnectionHandler.OnlineEvent">
+            <summary>
+            Thrown when the NS has connected and authenticated.
+            </summary>
+        </member>
+        <member name="E:MSNP.NotificationConnectionHandler.SignedOutEvent">
+            <summary>
+            Thrown when this connection has been stopped or was terminated from the other side.
+            </summary>
+        </member>
+        <member name="P:MSNP.NotificationConnectionHandler.FLContacts">
+            <summary>
+            Current forward contact list.
+            </summary>
+            <remarks>
+            This is a clone of the actual list, so any changes are not realized.
+            </remarks>
+        </member>
+        <member name="T:MSNP.NotificationConnectionHandler.ConnectionState">
+            <summary>
+            Determines which state the <see cref="M:MSNP.NotificationConnectionHandler.ProcessConnection"/> method is in this cycle.
+            </summary>
+        </member>
+        <member name="T:MSNP.NotificationConnectionHandler.MD5State">
+            <summary>
+            Determines which phase of the MD5 authentication the connection is in.
+            </summary>
+        </member>
+        <member name="T:MSNP.NotificationConnectionHandler.NotificationEventHandler">
+            <summary>
+            Used for all Notification-related events
+            </summary>
+        </member>
+        <member name="T:MSNP.NotificationConnectionHandler.SessionStartInfo">
+            <summary>
+            Class used to hold information for stating a new session.
+            </summary>
+        </member>
+        <member name="T:MSNP.Request">
+            <summary>
+            Represents a request to be sent to an MSN server
+            </summary>
+        </member>
+        <member name="M:MSNP.Request.#ctor(System.String,System.String)">
+            <summary>
+            Creates a simple request
+            </summary>
+            <param name="command">The command of the request</param>
+            <param name="parameters">The parameters for the command</param>
+        </member>
+        <member name="M:MSNP.Request.ToString">
+            <summary>
+            Represents this request as string for debugging purposes.
+            </summary>
+            <returns>This request in string format</returns>
+        </member>
+        <member name="T:MSNP.Response">
+            <summary>
+            Represents a single response or command from the server
+            </summary>
+        </member>
+        <member name="M:MSNP.Response.#ctor(System.String,System.Int32,System.String[])">
+            <summary>
+            Creates a basic response.
+            </summary>
+            <param name="command">The three-letter command</param>
+            <param name="transactionID">The ID for this response, or -1 if none.</param>
+            <param name="parameters">Any parameters passed with the response</param>
+        </member>
+        <member name="M:MSNP.Response.#ctor(System.String,System.Int32,System.String[],System.Boolean)">
+            <summary>
+            Allows the caller to specify if this is an error response
+            </summary>
+            <param name="command">The three-letter command</param>
+            <param name="transactionID">The ID for this response, or -1 if none.</param>
+            <param name="parameters">Any parameters passed with the response</param>
+            <param name="isError">Whether or not this is an error response</param>
+        </member>
+        <member name="M:MSNP.Response.#ctor(System.String,System.Int32,System.String[],System.Collections.Hashtable,System.String)">
+            <summary>
+            Creates a response object from a MSG response from the server
+            </summary>
+            <param name="command">The command, usually MSG</param>
+            <param name="transactionID">The transaction ID for this response, or -1 if none</param>
+            <param name="parameters">The response parameters (does not include the message parts)</param>
+            <param name="headers">MIME headers from this response</param>
+            <param name="message">message body from this message response</param>
+        </member>
+        <member name="M:MSNP.Response.SetOriginatingRequest(MSNP.Request)">
+            <summary>
+            Used to associate the request that generated this response
+            </summary>
+            <param name="originRequest">The request that generated this response</param>
+        </member>
+        <member name="M:MSNP.Response.ToString">
+            <summary>
+            Returns a string representation of this response. Should be used for debug purposes only.
+            </summary>
+            <returns>A string representation of this response</returns>
+        </member>
+        <member name="M:MSNP.Response.dumpHeaders">
+            <summary>
+            Convenience method used in <see cref="M:MSNP.Response.ToString"/> to serialize the headers hashtable to a string
+            </summary>
+            <returns>The MIME headers for the message</returns>
+        </member>
+        <member name="T:MSNP.Session">
+            <summary>
+            Represents a session with a user or group of users.
+            </summary>
+        </member>
+        <member name="M:MSNP.Session.#ctor(MSNP.SwitchboardConnectionHandler,MSNP.ISessionHandler,System.Object)">
+            <summary>
+            Main constructor.
+            </summary>
+            <param name="conn">The SBCH that created this session</param>
+            <param name="handler">The implementer provided session event handler</param>
+            <param name="sessionIdentifier">The implementer specified identifier for this session</param>
+        </member>
+        <member name="M:MSNP.Session.Start">
+            <summary>
+            Starts this session's thread. Sessions run in a seperate thread from the Switchboard handler because
+            the processing involved with session events may desync the SBCH.
+            </summary>
+        </member>
+        <member name="M:MSNP.Session.AddRosterUser(System.String,System.String)">
+            <summary>
+            Adds a user to the roster. Called by the SBCH when a user joins the session
+            </summary>
+            <param name="handle">The user handle (email address) of the user joining</param>
+            <param name="friendlyName">The friendly name of the user joining</param>
+        </member>
+        <member name="M:MSNP.Session.AddResponseToQueue(MSNP.Response)">
+            <summary>
+            Called by the SBCH when there is a new response or message for this session to handle
+            </summary>
+            <param name="response">The response to add to the queue</param>
+        </member>
+        <member name="M:MSNP.Session.Stop">
+            <summary>
+            Signals that this session should terminate.
+            </summary>
+        </member>
+        <member name="M:MSNP.Session.handleSession">
+            <summary>
+            Main thread function. Enters the main thread loop.
+            </summary>
+        </member>
+        <member name="M:MSNP.Session.processSession">
+            <summary>
+            Called every cycle to handle incoming responses and send out requests
+            </summary>
+        </member>
+        <member name="M:MSNP.Session.GetQueuedResponses">
+            <summary>
+            Retrieves all the currently queue responses for processing
+            </summary>
+            <returns>A collection of responses to process</returns>
+        </member>
+        <member name="M:MSNP.Session.GetRoster">
+            <summary>
+            Returns the list of users currently in the session
+            </summary>
+            <remarks>
+            This method is thread-safe. The dictionary returned is a clone of the actual
+            roster, so modifications will not be recognized inside the session.
+            </remarks>
+            <returns>A dictionary of friendly names keyed by their user handles.</returns>
+        </member>
+        <member name="M:MSNP.Session.SendMessage(System.String)">
+            <summary>
+            Sends a message to the session.
+            </summary>
+            <remarks>
+            <para>Any user joined in the session will receive the message. If this message is intended
+            private, the caller should use the <see cref="M:MSNP.Session.GetRoster"/> method to ensure that there
+            is only the intended recipient.</para>
+            <para>Message delivery is not garaunteed and may fail at any time. Sending messages after
+            the session has ended will do nothing and will not cause an error. The caller should ensure
+            that the session is open before sending a message, otherwise it will be lost.</para>
+            <para>This method is thread-safe, however, users could possibly join during the time when
+            the message is being sent.</para>
+            </remarks>
+            <param name="message">The message body text to send</param>
+        </member>
+        <member name="M:MSNP.Session.SendMessage(MSNP.MimeMessage)">
+            <summary>
+            Sends a message to the session
+            </summary>
+            <remarks>
+            <para>The caller of this method must be careful to set all the headers properly.
+            You must at least have the MIME-Version and Content-Type header. Usually,
+            MIME-Version is always "1.0" and Content-Type is text/plain.
+            </para>
+            <para>Any user joined in the session will receive the message. If this message is intended
+            private, the caller should use the <see cref="M:MSNP.Session.GetRoster"/> method to ensure that there
+            is only the intended recipient.</para>
+            <para>Message delivery is not garaunteed and may fail at any time. Sending messages after
+            the session has ended will do nothing and will not cause an error. The caller should ensure
+            that the session is open before sending a message, otherwise it will be lost.</para>
+            <para>This method is thread-safe, however, users could possibly join during the time when
+            the message is being sent.</para>
+            </remarks>
+            <param name="message"></param>
+        </member>
+        <member name="M:MSNP.Session.EndSession">
+            <summary>
+            Requests that this session end
+            </summary>
+            <remarks>
+            This will send the BYE command to the switchboard and close the connection.
+            </remarks>
+        </member>
+        <member name="M:MSNP.Session.ToString">
+            <summary>Returns a string representation of this session. This method is intended for debugging purposes only.</summary>
+        </member>
+        <member name="P:MSNP.Session.SessionID">
+            <summary>The MSN assigned ID for this session.</summary>
+            <remarks>
+            It is not safe to use this value as a unique identifier for this object. Sessions which have been
+            started as a result of the local user's request will not immediately have its ID set and will be
+            null. MSNP does not immediately return the session ID of an newly created outgoing session until the first
+            CAL has been place. Until then, the ID will be null.
+            </remarks>
+        </member>
+        <member name="P:MSNP.Session.SessionIdentifier">
+            <summary>The caller-designated session identifier.</summary>
+            <remarks>
+            The MSNPHelper will not modify this value. This is merely a caller-changable field to allow the
+            caller to identify this session from any others. This value defaults to null if the session is
+            incoming, otherwise it is whatever value the caller has set, or passed in to the <see cref="M:MSNP.MSNPHelper.RequestSession(System.String,System.Object)"/>
+            method.
+            </remarks>
+        </member>
+        <member name="T:MSNP.SwitchboardConnectionHandler">
+            <summary>
+            Handler for connections to Switchboard servers
+            </summary>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.#ctor(System.String,System.Int32,System.String,System.String,System.String,System.String,System.String,MSNP.ISessionHandler,System.Object)">
+            <summary>
+            Main constructor. Configures this handler.
+            </summary>
+            <remarks>
+            No connections or actual processing is done in the constructor. Use the <see cref="M:MSNP.ConnectionHandler.Start"/> method to begin processing.
+            </remarks>
+            <param name="host">The DNS name or IP address of the SB to connect to.</param>
+            <param name="port">The port of the SB server</param>
+            <param name="user">The username with which to authenticate</param>
+            <param name="pass">The user's password</param>
+            <param name="friendlyName">This user's friendly name</param>
+            <param name="authChallengeInfo">The challenge info for connecting to an existing session</param>
+            <param name="sessionID">The ID of this session if joining an existing session</param>
+            <param name="sessionHandler">The implemented session handler for any new sessions</param>
+            <param name="sessionIdentifier">The implementer specified identifier for this session</param>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.ProcessConnection">
+            <summary>
+            Implementation of the abstract <see cref="M:MSNP.ConnectionHandler.ProcessConnection"/> method.
+            </summary>
+            <remarks>
+            <para>This is the main processing method for this class. This method is called
+            every cycle in the connection thread.</para>
+            <para>This thread will process the initial protocol initialization dialogue and then
+            enter the main switchboard phase and process any new messages or notifications.</para>
+            </remarks>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.OnConnectionClosed">
+            <summary>
+            Called when the <see cref="T:MSNP.ConnectionHandler"/> has actually
+            closed the connection.
+            </summary>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.ProcessResponses(MSNP.Response[])">
+            <summary>
+            Process responses from server.
+            </summary>
+            <remarks>
+            This method handles situations such as a user joining the session,
+            leaving the session, or responses to commands such as CAL
+            </remarks>
+            <param name="responses">The list of responses to process</param>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.AddSessionRequest(MSNP.Request)">
+            <summary>
+            Adds a request for this SB session to process
+            </summary>
+            <remarks>
+            This method is used by the convience methods to allow
+            other classes to request things like inviting a user
+            or sending a message.
+            </remarks>
+            <param name="request">The request to add</param>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.ProcessSessionRequests">
+            <summary>
+            Processes any requests pending in the session queue
+            </summary>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.OnTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Used to determine is the session should terminate
+            </summary>
+            <remarks>
+            If no one has joined the session after 30 seconds, close it so
+            it doesn't linger around wasting resources.
+            </remarks>
+            <param name="sender">Type who rasied the event</param>
+            <param name="args">Arguments and data for this event delegate</param>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.OnSessionEnd">
+            <summary>
+            Throws SessionEndEvent.
+            </summary>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.OnSessionIDObtained">
+            <summary>
+            Throws a SessionIDObtained event.
+            </summary>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.InviteContact(System.String)">
+            <summary>
+            Invites a user to this session.
+            </summary>
+            <param name="userHandle">The user handle (email address) of the user to invite</param>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.SendMessage(System.String)">
+            <summary>
+            Sends a message to the session.
+            </summary>
+            <param name="message">The message body to send</param>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.SendMessage(MSNP.MimeMessage)">
+            <summary>
+            Sends a MIME message to the session
+            </summary>
+            <param name="message">The message to send</param>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.Stop">
+            <summary>
+            Stop this connection and close out gracefully.
+            </summary>
+        </member>
+        <member name="M:MSNP.SwitchboardConnectionHandler.GetErrorDescriptionForCommand(System.String)">
+            <summary>
+            Converts an error response from the server to a human-readable description
+            </summary>
+            <param name="errorCommand">The command for which to get the description</param>
+            <returns>A description of the error</returns>
+        </member>
+        <member name="E:MSNP.SwitchboardConnectionHandler.SessionEndEvent">
+            <summary>
+            Thrown when this session is ending
+            </summary>
+        </member>
+        <member name="E:MSNP.SwitchboardConnectionHandler.SessionIDObtained">
+            <summary>
+            Thrown when this is a user-requested session and the session ID has finally been determined.
+            </summary>
+        </member>
+        <member name="T:MSNP.SwitchboardConnectionHandler.ConnectionState">
+            <summary>
+            Determines which state the <see cref="M:MSNP.SwitchboardConnectionHandler.ProcessConnection"/> method is in this cycle.
+            </summary>
+        </member>
+    </members>
+</doc>

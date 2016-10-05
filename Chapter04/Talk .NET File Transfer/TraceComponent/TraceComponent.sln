@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TraceComponent", "TraceComponent.vbproj", "{FFE76187-CA11-4877-85E2-24BAEAC94342}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{FFE76187-CA11-4877-85E2-24BAEAC94342}.Debug.ActiveCfg = Debug|.NET
+		{FFE76187-CA11-4877-85E2-24BAEAC94342}.Debug.Build.0 = Debug|.NET
+		{FFE76187-CA11-4877-85E2-24BAEAC94342}.Release.ActiveCfg = Release|.NET
+		{FFE76187-CA11-4877-85E2-24BAEAC94342}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

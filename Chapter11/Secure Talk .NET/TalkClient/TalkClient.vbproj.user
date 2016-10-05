@@ -1,0 +1,48 @@
+<VisualStudioProject>
+    <VisualBasic>
+        <Build>
+            <Settings ReferencePath = "C:\Code\P2P\Chapter11\TalkComponent\bin\;C:\P2P\Chapter10\TalkComponent\bin\;C:\P2P\Chapter10\Talk .NET\TalkComponent\bin\;D:\Matthew\Writing\Books\Peer-To-Peer Applications with .NET\Code\Chapter 10\Talk .NET\TalkComponent\bin\;D:\Matthew\Writing\Books\Peer-To-Peer Applications with .NET\Code\Chapter 03\Scrap\Talk .NET\TalkComponent\bin\;D:\Matthew\Writing\Books\Peer-To-Peer Applications with .NET\Code\Chapter 03\Talk .NET\TalkComponent\bin\;D:\Matthew\Writing\Books\Peer-To-Peer Applications with .NET\Code\Chapter 03\Talk.NET\TalkComponent\bin\;D:\Matthew\Writing\Books\Peer-To-Peer Applications with .NET\Code\Chapter 03\TalkComponent\bin\;D:\Matthew\Writing\Books\Programming Distributed Applications with .NET\Code\Talk .NET\Talk .NET Server\bin\;D:\Matthew\Writing\Books\Programming Distributed Applications with .NET\Code\Talk .NET\Talk Component\bin\;D:\Matthew\Writing\Books\Peer-To-Peer Applications with .NET\Code\Chapter 04\Talk .NET Decentralized\TalkComponent\bin\;C:\P2P\Chapter10\CryptoComponent\bin\;C:\Code\P2P\Chapter11\CryptoComponent\bin\;C:\Code\P2P\Chapter11\Secure Talk .NET\CryptoComponent\bin\;C:\Code\P2P\Chapter11\Secure Talk .NET\TalkComponent\bin\" >
+                <Config
+                    Name = "Debug"
+                    EnableASPDebugging = "false"
+                    EnableASPXDebugging = "false"
+                    EnableUnmanagedDebugging = "false"
+                    EnableSQLServerDebugging = "false"
+                    RemoteDebugEnabled = "false"
+                    RemoteDebugMachine = ""
+                    StartAction = "Project"
+                    StartArguments = ""
+                    StartPage = ""
+                    StartProgram = ""
+                    StartURL = ""
+                    StartWorkingDirectory = ""
+                    StartWithIE = "false"
+                />
+                <Config
+                    Name = "Release"
+                    EnableASPDebugging = "false"
+                    EnableASPXDebugging = "false"
+                    EnableUnmanagedDebugging = "false"
+                    EnableSQLServerDebugging = "false"
+                    RemoteDebugEnabled = "false"
+                    RemoteDebugMachine = ""
+                    StartAction = "Project"
+                    StartArguments = ""
+                    StartPage = ""
+                    StartProgram = ""
+                    StartURL = ""
+                    StartWorkingDirectory = ""
+                    StartWithIE = "true"
+                />
+            </Settings>
+        </Build>
+        <OtherProjectSettings
+            CopyProjectDestinationFolder = ""
+            CopyProjectUncPath = ""
+            CopyProjectOption = "0"
+            ProjectView = "ProjectFiles"
+            ProjectTrust = "0"
+        />
+    </VisualBasic>
+</VisualStudioProject>
+
